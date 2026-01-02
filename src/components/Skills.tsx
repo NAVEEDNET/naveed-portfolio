@@ -23,7 +23,7 @@ type Category = "Frontend" | "Backend" | "Tools"|"UI UX Design"|"ERP"|"CRM"| "Ot
 
 type Skill = {
   name: string;
-  icon: JSX.Element | null;
+  icon: React.ReactNode;
   category: Category;
   link?: string;
 };
@@ -152,7 +152,7 @@ const Skills: React.FC = () => {
           {["All", "Frontend", "Backend", "UI UX Design","ERP","CRM","Other"].map(btn => (
             <button
               key={btn}
-              onClick={() => setFilter(btn as any)}
+              onClick={() => setFilter(btn as "All" | Category)}
               className={`px-5 py-2 rounded-full text-sm transition
                 ${
                   filter === btn

@@ -121,22 +121,32 @@ const Contact = () => {
         },
       });
 
-      let data: any;
+      let data: unknown;
       const ct = res.headers.get('content-type') || '';
       if (ct.includes('application/json')) {
         data = await res.json();
       } else {
         data = await res.text();
       }
-      console.log('Formspree response', res.status, data);
+      const getResponseMessage = (d: unknown, status: number) => {
+        if (typeof d === 'string') return d;
+        if (typeof d === 'object' && d !== null) {
+          const obj = d as Record<string, unknown>;
+          if (typeof obj.message === 'string') return obj.message;
+          if (typeof obj.error === 'string') return obj.error;
+        }
+        return `Status ${status}`;
+      };
+      const respMsg = getResponseMessage(data, res.status);
+      console.log('Formspree response', res.status, respMsg);
 
       if (res.ok) {
         setStatus("sent");
         form.reset();
       } else {
         setStatus("error");
-        console.error('Formspree error', res.status, data);
-        alert('Failed to send message. Check the console and your Formspree dashboard (inbox, verification, or forwarding settings).');
+        console.error('Formspree error', res.status, respMsg);
+        alert(`Failed to send message: ${respMsg}. Check the console and your Formspree dashboard (inbox, verification, or forwarding settings).`);
       }
     } catch (err) {
       console.error('Network error sending form', err);
@@ -197,11 +207,11 @@ const Contact = () => {
                 : "Send Message"}
             </button>
 
-            <p className="text-sm text-gray-400">
+            <p className={status === "error" ? "text-sm text-red-400" : "text-sm text-gray-400"}>
               {status === "sent"
                 ? "Message sent successfully!"
                 : status === "error"
-                ? "welcome ."
+                ? "Failed to send message. Please try again."
                 : "You are welcome!"}
             </p>
           </div>

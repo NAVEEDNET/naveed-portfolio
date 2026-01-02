@@ -85,7 +85,7 @@ const Hero = () => {
       </div>
 
       {/* Tailwind custom animations */}
-      <style jsx>{`
+      <style>{`
         @keyframes fadeInLeft {
           0% {
             opacity: 0;
