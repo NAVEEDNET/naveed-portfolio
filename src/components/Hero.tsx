@@ -5,9 +5,12 @@ import heroImg from "../assets/images/naveed1.png";
 
 const Hero = () => {
   return (
+    
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center pt-24"
+      className=" relative w-full min-h-screen pt-24 overflow-hidden"
+    //  className="max-w-1xl mx-auto px-6 py-4 flex justify-between items-center"
+    // className=" w-full min-h-screen flex items-center justify-center pt-24" 
     >
       {/* Background gradient + animated shapes */}
       <div className="absolute inset-0 bg-gradient-to-r from-purple-900 via-black to-indigo-900 -z-10">

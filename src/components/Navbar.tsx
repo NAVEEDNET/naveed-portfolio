@@ -5,6 +5,7 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-0 w-full bg-black/80 backdrop-blur border-b border-white/10 z-50">
+      
       <div className="max-w-9xl mx-auto px-6 py-4 flex justify-between items-center">
         <img
   src={logoImg}

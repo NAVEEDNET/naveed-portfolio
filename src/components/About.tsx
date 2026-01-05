@@ -2,7 +2,7 @@ const About = () => {
   return (
     <section
       id="about"
-       className="min-h-screen flex items-center justify-center w-full max-w-100xl bg-gray-900 text-white px-24 sm:px-24 lg:px-24"
+       className=" min-h-screen flex items-center justify-center w-full max-w-100xl bg-gray-900 text-white px-24 sm:px-24 lg:px-24"
     >
       <div className="w-full max-w-150xl text-center">
         {/* Title */}
